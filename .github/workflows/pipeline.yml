@@ -39,13 +39,15 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: "0"
 
       - name: Bump version and push tag
+        id: tag_version
         uses: anothrNick/github-tag-action@1.64.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DRY_RUN: false
           BUMP: patch
 
   deploy:
@@ -60,3 +62,4 @@ jobs:
       - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          

@@ -70,7 +70,7 @@ jobs:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 
-   notify_discord:
+  notify_discord:
     if: always()
     runs-on: ubuntu-latest
     steps:

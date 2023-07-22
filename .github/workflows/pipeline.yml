@@ -70,22 +70,22 @@ jobs:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 
-  notify_discord:
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+notify_discord:
+  if: always()
+  runs-on: ubuntu-latest
+  steps:
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
    
-      - name: Install axios
-        run: npm install axios
-   
-      - name: Send Discord notification
-        env:
-          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }} 
-        run: node send_discord_notification.js
+    - name: Install axios
+      run: npm install axios
+
+    - name: Send Discord notification
+      env:
+        WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }} 
+      run: node send_discord_notification.js
           
         
         
